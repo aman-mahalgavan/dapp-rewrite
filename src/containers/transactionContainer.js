@@ -22,7 +22,7 @@ class TransactionContainer extends Component {
     }
 
     componentDidMount() {
-        console.log("LANGUAGE CONFIG Transaction -------------------------------------->>>>>>>> ", this.props);
+        console.log("LANGUAGE CONFIG Transaction ------------------------------------->>>>>>>> ", this.props);
         this.props.getMyOrders();
     }
 
