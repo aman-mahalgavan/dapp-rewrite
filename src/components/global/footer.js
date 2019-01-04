@@ -55,17 +55,38 @@ export default class FooterComponent extends React.Component {
                   <InfoBox>
                     <Item><strong>{FOOTER.ABOUT_TEXT}</strong></Item>
                     <Item dangerouslySetInnerHTML={{__html: FOOTER.CEO}} />
+                    <Item>{FOOTER.ADDRESS}</Item>
+                    <Item dangerouslySetInnerHTML={{__html: FOOTER.FOT_NUM1}} />
                   </InfoBox>
                   <InfoBox>
+                    <InfoBoxTitle>{FOOTER.CSCENTER}</InfoBoxTitle>
                     <InfoBoxContents>
                       <div className="separate">
+                        <InfoBoxItem dangerouslySetInnerHTML={{__html: FOOTER.TIME}} />
+                        <strong style={{marginLeft: '-3px'}}>
+                          <Link
+                            to="/coinInfo"
+                          >{FOOTER.INFO}
+                          </Link>
+                        </strong>
+                        <strong>
+                          <a
+                            className="listing"
+                            href={`/static/cloudflare/listing_${localStorage.getItem("lang")}.html`}
+                            target="_blank"
+                          >{FOOTER.LISTING}
+                          </a>
+                        </strong>
+
+                      </div>
+                      <div className="separate">
+                        <InfoBoxItem dangerouslySetInnerHTML={{__html: FOOTER.TEL}} />
                         <InfoBoxItem>
-                          <Item>{FOOTER.ADDRESS}</Item>
-                          <strong>Contact Us :</strong>
+                          <strong>Email :</strong> 
                           {' '}
                           <a
-                            href="mailto:help@dexhi.com"
-                          >help@dexhi.com
+                            href="mailto:support@bitnaru.com"
+                          >support@bitnaru.com
                           </a>
                         </InfoBoxItem>
                         <InfoBoxItem className="sns">
@@ -75,7 +96,34 @@ export default class FooterComponent extends React.Component {
                             onClick={() => window.open(FooterData.chatUrl)}
                           >
                             <i className="xi-kakaotalk" />
+                            {FOOTER.CHAT}
                           </a>
+                          <strong style={{marginLeft: '20px'}}>SNS : </strong>
+                          <ul className="sns-list">
+                            <li>
+                                <a
+                                    href="javascript:void(0)"
+                                    onClick={() => window.open(FooterData.chatUrl)}
+                                  >
+                                    <i className="xi-kakaotalk" />
+                                  </a>
+                              </li>
+                            <li>
+                                <a href={FooterData.sns.telegram.link} target="_blank">
+                                    <i className="xi-telegram" />
+                                  </a>
+                              </li>
+                            <li>
+                                <a href={FooterData.sns.naver.link} target="_blank">
+                                    <i className="xi-naver-square" />
+                                  </a>
+                              </li>
+                            <li>
+                                <a href={FooterData.sns.twitter.link} target="_blank">
+                                    <i className="xi-twitter" />
+                                  </a>
+                              </li>
+                          </ul>
                         </InfoBoxItem>
                       </div>
                     </InfoBoxContents>
@@ -216,7 +264,7 @@ const InfoBoxContents = styled.div`
 `
 
 const Item = styled.span`
-    margin:0 70px 0 0;
+    margin:0 20px 0 0;
     font-weight:400;
     font-size:15px;
     letter-spacing:-.25px;

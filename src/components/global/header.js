@@ -6,8 +6,6 @@ import englishLangIcon from "../../assets/images/icon/en.png";
 import koreanLangIcon from "../../assets/images/icon/kr.png";
 import dexhiLogo from "../../assets/images/Dexhi_white.png";
 import {contractList} from "../../utilities/config";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown} from '@fortawesome/free-solid-svg-icons';
 
 
 export default class HeaderComponent extends Component {
@@ -91,7 +89,7 @@ export default class HeaderComponent extends Component {
                         }}>
                   <span>
                     {localStorage.getItem('lang') === "kr" ? "KR" : "EN"}
-                      &nbsp;<FontAwesomeIcon icon={faCaretDown} />
+                      <i className="xi-caret-down-min"/>
                   </span>
                         </p>
                         <ul id="langSelect" className={"lang_" + (this.state.langActive ? "on" : "off")}>
@@ -120,7 +118,7 @@ export default class HeaderComponent extends Component {
                             >
                     <span>
                       {localStorage.getItem('lang') === "kr" ? "KR" : "EN"}
-                        &nbsp;<FontAwesomeIcon icon={faCaretDown} />
+                        <i className="xi-caret-down-min"/>
                     </span>
                             </p>
                             <ul id="langSelect" className={"lang_" + (this.state.langActive ? "on" : "off")}>
