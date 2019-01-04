@@ -100,7 +100,7 @@ class HomeContainer extends Component {
                     <InfoSection>
                         <div className="container">
                             <div className="exchange_view">
-                                <SlickA/>
+                                <SlickA languageConfig={this.props.languageConfig}/>
                             </div>
                         </div>
                     </InfoSection>
@@ -575,7 +575,7 @@ const Content = styled.div`
 
 const InfoSection = styled.div`
     width:100%;
-    height:100px;
+    /*height:100px;*/
     background:#f2f2f2;
     .container {
         width:1200px;
@@ -587,38 +587,17 @@ const InfoSection = styled.div`
             height:100%;
             box-sizing:border-box;
             .slick-slider {
+                outline:none !important;
                 height:100%;
                 color:#333;
                 padding:0 30px;
-                outline:0;
-                .slick-prev {
-                    width:30px;
-                    height:60px;
-                    left:0;
-                    z-index: 9;
-                    &:before {
-                        display:block;
-                        width:100%;
-                        height:100%;
-                        content:'';
-                        background:url('https://static.bitnaru.com/v3_web/images/icon_prev.png') 0 0 no-repeat;
-                    }
-                }
-                .slick-next {
-                    width:30px;
-                    height:60px;
-                    right:0;
-                    z-index: 9;
-                    &:before {
-                        content:'';
-                        display:block;
-                        width:100%;
-                        height:100%;
-                        background:url('https://static.bitnaru.com/v3_web/images/icon_next.png') 0 0 no-repeat;
-                    }
-                }
                 .slick-list {
+                    outline:none !important;
+                    &:focus{outline:0;}
+                    .roll_Box{
+                        outline:none !important;
                     .roll-content {
+                        outline:none !important;
                         height : 100px;
                         line-height : 100px;
                         margin: 0 auto;
@@ -635,18 +614,21 @@ const InfoSection = styled.div`
                         place-content: center;
                         align-items: center;
                         justify-content: center;
-                        
+                        &:focus{outline:0;}
                         a {
                             display: block;
                             white-space: nowrap;
                             text-overflow: ellipsis;
                             //width: 100%;
                             overflow: hidden;
+                            text-decoration:none;
+                            color:#000;
                         }
                         
                         .category {
                             color:#fff;
                             font-size:20px;
+                            width:65px;s
                             height:30px;
                             line-height:30px;
                             display:inline-block;
@@ -654,7 +636,7 @@ const InfoSection = styled.div`
                             border-radius: 15px;
                             vertical-align: 5px;
                             margin:0 35px 0 0;
-                            background:#f39800;
+                            background:#80a8aa;
                             &.note {
                                 background:#f39800;
                             }
@@ -665,6 +647,33 @@ const InfoSection = styled.div`
                                 background:#c00;
                             }
                         }
+                    }
+                    }
+                }
+                .slick-prev {
+                    width:30px;
+                    height:60px;
+                    left:0;
+                    z-index: 19;
+                    &:before {
+                        display:block;
+                        width:100%;
+                        height:100%;
+                        content:'';
+                        background:url('https://static.bitnaru.com/v3_web/images/icon_prev.png') 0 0 no-repeat;
+                    }
+                }
+                .slick-next {
+                    width:50px;
+                    height:60px;
+                    right:0;
+                    z-index: 19;
+                    &:before {
+                        content:'';
+                        display:block;
+                        width:100%;
+                        height:100%;
+                        background:url('https://static.bitnaru.com/v3_web/images/icon_next.png') 0 0 no-repeat;
                     }
                 }
             }

@@ -231,6 +231,7 @@ export default class InstrumentSelectA extends React.Component {
                                             <img src={ICON}/>
                                         }
                                     {obj.productName}
+                                    <span className='ETC'>{obj.productName}/{this.props.baseName}</span>
                                     </td>
                                     <td className="up dataNumber">{obj.bestBid}</td>
                                     <td className="up dataNumber">{obj.bestAsk}</td>
@@ -377,5 +378,13 @@ const Selector = styled.div`
             top:4px;
             margin:auto 10px auto -10px;
         }
+    }
+    .ETC{
+        display:block;
+        font-size:10px;
+        position:relative;
+        top:-3px;
+        left:20px;
+        color:#666666;
     }
 `

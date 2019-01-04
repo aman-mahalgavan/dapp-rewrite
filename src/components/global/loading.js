@@ -48,7 +48,7 @@ const Comp = styled.div`
         left : 50%;
         top : 50%;
         transform : translate(-50%,-50%);
-        width: 40%;
+        width: 20%;
        // height: 40%;
     }
 `

@@ -177,7 +177,7 @@ class NoticeDetail extends Component{
                                     <ul>
                                         <Link to={{
                                             pathname: '/noticeContainer',
-                                        }}><li><a className="btn btn_small btn_col1">{DASHBOARD.LIST}</a></li></Link>
+                                        }}><li><span className="btn btn_small btn_col1">{DASHBOARD.LIST}</span></li></Link>
                                     </ul>
                                 </div>
                             </div>
@@ -201,6 +201,7 @@ background : #fff;
 .main {
     width:1200px;
     margin-top:100px;
+    margin : 0 auto;
     .board_common {
         .category_list {
             margin-top:110px;
@@ -292,7 +293,7 @@ background : #fff;
                         margin-left: 0;
                     }
                     list-style:none;
-                    a {
+                    span {
                         display:block;
                         width: 60px;
                         background: #036;

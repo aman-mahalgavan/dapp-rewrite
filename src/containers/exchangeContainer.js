@@ -366,6 +366,8 @@ class ExchangeContainer extends Component {
                             languageConfig={this.props.languageConfig}
                             data={this.state.marketsData}
                             changeTabData={this.changeTabData}
+                            baseName={this.state.baseName}
+                            tradeName={this.state.tradeName}
                         />
 
                     </div>
