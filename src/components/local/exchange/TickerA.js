@@ -110,19 +110,19 @@ export default class TickerA extends React.Component{
               </div>
               <div className='priceStatus'>
                 <div className="priceHigh priceStatusRoot">
-                  <p className="remark1">{EXCHANGE_PAGE.HIGH}</p>
+                  <p className="remark">{EXCHANGE_PAGE.HIGH}</p>
                   <div className="dataNumber">
                                 -
 
-                    {/*<p className="priceToKrw">-</p>*/}
+                    <p className="priceToKrw">-</p>
                   </div>
                 </div>
                 <div className="priceLow priceStatusRoot">
-                  <p className="remark2">{EXCHANGE_PAGE.LOW}</p>
+                  <p className="remark">{EXCHANGE_PAGE.LOW}</p>
                   <div className="dataNumber">
                                 -
 
-                    {/*<p className="priceToKrw">-</p>*/}
+                    <p className="priceToKrw">-</p>
                   </div>
                 </div>
               </div>

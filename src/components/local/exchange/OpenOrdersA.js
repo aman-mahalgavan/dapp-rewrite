@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components';
 import ReactTable from 'react-table';
 import { transformToTokenName } from '../../../utilities/helpers';
-import Pagination from "../../global/Pagination";
+
 
 export default class OpenOrdersA extends React.Component {
 
@@ -67,14 +67,11 @@ export default class OpenOrdersA extends React.Component {
       );
       pages.push(numButton);
     }
-    const length_data = this.props.data;
-    let pageSize = 0
     return this.state.isLogin ? (
       <OpenOrder>
         <div>
           <ReactTable
-            PaginationComponent={Pagination}
-            data={length_data}
+            data={this.props.data}
             columns={[
               {
                 Header: OPEN_ORDERS.INSTRUMENT_TEXT,
@@ -173,68 +170,5 @@ export default class OpenOrdersA extends React.Component {
 }
 
 const OpenOrder = styled.div`
-.ReactTable{
-    border:none;
-    .rt-thead{
-        .rt-th{
-           outline:none;
-        }
-        .rt-th.-sort-asc{
-           box-shadow:none;
-        }
-        .rt-th.-sort-desc{
-           box-shadow:none;
-        }    
-        .rt-resizable-header-content{
-           font-size:15px;
-           line-height:30px;
-        }
-    }
-    .rt-thead.-header{
-            font-size:18px;
-            font-weight:600;
-            color:#1a1a1a;
-            box-shadow:none;
-            border-bottom:2px solid #364958;
-            height:40px;
-        .rt-th{
-            border: none;
-        }
-    }
-    .rt-tbody{
-        .rt-tr.-odd{
-            background:#fff;
-        }
-        .rt-tr.-padRow{
-            background:#fff;
-        }
-        .rt-tr-group{
-            border-bottom:none;
-            background:#fff;
-            &:hover{
-                background:rgb(249, 251, 253);
-            }
-        }
-        .rt-td{
-            border:none;
-            border-bottom:1px solid #d9d9d9;
-            font-size:15px;
-            font-weight:600;
-            padding:8px 5px;
-            color:#1a1a1a;
-            
-        }
-    }
-    .-pagination{
-        box-shadow:unset;
-        border-top:none;
-        margin-top:50px;
-    }
-    .pagination-bottom{
-      .Table__pagination{
-          margin-top:10px;
-          margin-bottom:10px;
-      }
-    }  
- }
+
 `

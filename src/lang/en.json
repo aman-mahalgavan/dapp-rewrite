@@ -1591,20 +1591,6 @@
     "DEPOSIT_LIMIT": "The amount must be greater than 0 and less than 9223372036.",
     "NOPOST": "There is no post."
   },
-  "NOTICE_TEXT": {
-    "TXT_TITLE1": "Opening of DEXHI demo version",
-    "TXT_TEXT1": "Hello, this is DEXHI.\nDEXHI demo version is now opened.\n\nWe appreciate your attention on this.\nThank you.",
-    "TXT_TITLE2": "Information on Plug(PLG) KRW market listing and listing event",
-    "TXT_TITLE3": "DexNetwork(DNW) Event winner announcement",
-    "TXT_TITLE4": "Infomation on Server Maintenace (14.12.18 4am ~ 2pm)",
-    "TXT_TITLE5": "Infomation on the wallet opening and listing of Plug(PLG)",
-    "TXT_TITLE6": "Infomation regarding ERC20 token wallet opening schedule",
-    "TXT_TITLE7": "Pundi X(NPXS) December airdrop completed",
-    "TXT_TITLE8": "BitNaru is under maintenance. (09.12.2018 21:50 ~ 09.12.2018 23:00)",
-    "TXT_TITLE9": "Infomation on Taklimaken commission change, and wallet opening",
-    "TXT_TITLE10": "Infomation on changing price unit for SRCOIN",
-    "TXT_TITLE11": "Infomation regarding resuming DNW (BTCB) trading and event"
-  },
   "NOTICE_FAQ":[
     {
       "category": "Sign up/Delete",
