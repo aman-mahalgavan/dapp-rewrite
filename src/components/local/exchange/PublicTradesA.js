@@ -29,14 +29,11 @@ export default class PublicTradesA extends React.Component {
     }
 
     render() {
-        const {PUBLIC_TRADES,EXCHANGE_PAGE} = this.props.languageConfig;
+        const {PUBLIC_TRADES} = this.props.languageConfig;
         return (
           <Public>
             <table className="table table-hover minFont recent-trades-table">
               <thead>
-                <tr>
-                    <td colSpan={3}><h3>{EXCHANGE_PAGE.TRADE}</h3></td>
-                </tr>
                 <tr>
                   <th>{PUBLIC_TRADES.TIME_TEXT}</th>
                   <th dangerouslySetInnerHTML={{__html: `${PUBLIC_TRADES.PRICE_TEXT}<span>(${this.props.baseName})</span>`}} />

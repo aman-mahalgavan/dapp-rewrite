@@ -10,9 +10,6 @@ import Web3 from 'web3';
 import Actions from '../actions/index';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCaretDown, faSearch} from '@fortawesome/free-solid-svg-icons';
-import Pagination from "../components/global/Pagination";
-import noticeDetail from './noticeDetail'
-
 
 const hrefName=[
     "/notice",
@@ -28,6 +25,7 @@ export default class extends React.Component{
     state = ({
         page: 1,
         category: "All",
+        activeTab: 0,
         searchText : '',
     })
 
@@ -35,97 +33,28 @@ export default class extends React.Component{
         super(props);
 
     }
-
+    static async getInitialProps ({ query: { category, activeTab, page } }) {
+        let response;
+        let NOTICE = [];
+        try{
+            response = await fetch("https://apiex.bitnaru.com/v1/board/api/list");
+            NOTICE = await response.json();
+        }catch(e){
+            console.log(e);
+        }finally{
+            return {activeTab, category, page, NOTICE}
+        }
+    }
     componentDidMount(){
 
     }
     escapeRegExp(str) {
         return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
     }
-    renderTable() {
-        const { WALLET } = this.props.languageConfig;
-        let notice = [
-            {
-                title:'Opening of DEXHI demo version.',
-                date:'2019-01-03',
-                id:0
-            },
-            {
-                title:'Information on Plug(PLG) KRW market listing and listing event',
-                date:'2018-12-14',
-                id:1
-            },
-            {
-                title:'DexNetwork(DNW) Event winner announcement',
-                date:'2018-12-14',
-                id:2
-            },
-            {
-                title:'Infomation on Server Maintenace (14.12.18 4am ~ 2pm)',
-                date:'2018-12-14',
-                id:3
-            },
-            {
-                title:'Infomation on the wallet opening and listing of Plug(PLG)',
-                date:'2018-12-13',
-                id:4
-            },
-            {
-                title:'Infomation regarding ERC20 token wallet opening schedule',
-                date:'2018-12-11',
-                id:5
-            },
-            {
-                title:'Pundi X(NPXS) December airdrop completed',
-                date:'2018-12-11',
-                id:6
-            },
-            {
-                title:'BitNaru is under maintenance. (09.12.2018 21:50 ~ 09.12.2018 23:00)',
-                date:'2018-12-10',
-                id:7
-            },
-            {
-                title:'Infomation on Taklimaken commission change, and wallet opening',
-                date:'2018-12-10',
-                id:8
-            },
-            {
-                title:'Infomation on changing price unit for SRCOIN',
-                date:'2018-12-07',
-                id:9
-            },
-            {
-                title:'Infomation regarding resuming DNW (BTCB) trading and event',
-                date:'2018-12-06',
-                id:10
-            },
 
-        ]
-
-        return(
-            console.log("index",notice),
-            <ReactTable
-                data={notice}
-                columns={[
-                    {
-                        id: "title",
-                        accessor: d =>
-                            <Link className='Link_title' to={`/noticeDetail?id=${d.id}`}>{d.title}</Link>
-                    },
-                    {
-                        id: "date",
-                        accessor: d => d.date
-                    },
-                ]}
-                PaginationComponent={Pagination}
-                defaultPageSize={10}
-            />
-        );
-    }
 
     render() {
-        const {NOTIeCE} = this.props;
+        const {NOTICE} = this.props;
         const {FOOTER, BALANCES, DASHBOARD} = this.props.languageConfig;
         const tab = [
             {
@@ -161,6 +90,49 @@ export default class extends React.Component{
 
         let timer=null;
         const self = this;
+        let notice = [
+            {
+                title:'Information on Plug(PLG) KRW market listing and listing event',
+                date:'2018-12-14'
+            },
+            {
+                title:'DexNetwork(DNW) Event winner announcement',
+                date:'2018-12-14'
+            },
+            {
+                title:'Infomation on Server Maintenace (14.12.18 4am ~ 2pm)',
+                date:'2018-12-14'
+            },
+            {
+                title:'Infomation on the wallet opening and listing of Plug(PLG)',
+                date:'2018-12-13'
+            },
+            {
+                title:'Infomation regarding ERC20 token wallet opening schedule',
+                date:'2018-12-11'
+            },
+            {
+                title:'Pundi X(NPXS) December airdrop completed',
+                date:'2018-12-11'
+            },
+            {
+                title:'BitNaru is under maintenance. (09.12.2018 21:50 ~ 09.12.2018 23:00)',
+                date:'2018-12-10'
+            },
+            {
+                title:'Infomation on Taklimaken commission change, and wallet opening',
+                date:'2018-12-10'
+            },
+            {
+                title:'Infomation on changing price unit for SRCOIN',
+                date:'2018-12-07'
+            },
+            {
+                title:'Infomation regarding resuming DNW (BTCB) trading and event',
+                date:'2018-12-06'
+            },
+
+        ]
 
         return (
             <div>
@@ -207,7 +179,37 @@ export default class extends React.Component{
                                 <div className="notice_wrap">
                                     <div className="bo_navi">
                                     </div>
-                                    {this.renderTable()}
+                                    <table>
+                                        <tbody>
+                                        {
+                                            notice.length > 0 ?
+                                                notice.map((item, index) => {
+                                                        var newDate = new Date(item.insert_dt);
+                                                        var dateFormat = newDate.getFullYear() + ". " +
+                                                            (newDate.getMonth()+1) + ". " +
+                                                            newDate.getDate()
+                                                        return index >= ((this.state.page - 1) * 10)  && index <= this.state.page * 10 -1 ?
+                                                            (
+                                                                <tr key={index}>
+                                                                    <td className="notice_title">
+                                                                    <span><a>{item.title}</a></span>
+                                                                    </td>
+                                                                    <td className="date">{item.date}</td>
+                                                                </tr>
+                                                            ) : null
+                                                    }
+                                                ) :
+                                                <tr colSpan="1">
+                                                    <td className="no-data">&quot;{this.state.searchText}&quot; 의 검색 결과가 없습니다.</td>
+                                                </tr>
+                                        }
+                                        </tbody>
+                                    </table>
+                                    <div className="paging">
+                                        <ul>
+                                            1 &nbsp;  2  &nbsp; 3
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </section>
@@ -316,62 +318,75 @@ const Notice = styled.div`
                     font-weight: bold;
                 }
             }
-            .ReactTable{
-                border:none;
-                border-top:1px solid #d9d9d9;
-                margin-top:100px;
-                margin-bottom:55px;
-                .rt-thead{
-                    .rt-tr{
-                       display:none;
-                    }
-                 }
-                .rt-thead.-header{
-                    display:none;
-                }
-                .rt-tbody{
-                    .rt-tr.-odd{
-                        background:#fff;
-                    }
-                    .rt-tr.-padRow{
-                        background:#fff;
-                    }
-                    .rt-tr-group{
-                        border-bottom:none;
-                        background:#fff;
-                    }
-                    .rt-td{
-                        border:none;
-                        border-bottom:1px solid #d9d9d9;
-                        font-size:14px;
-                        font-weight:600;
-                        padding:14px 5px;
-                        color:#1a1a1a;
-                        &:first-child{
-                            padding-left:35px;    
+            table {
+                width: 100%;
+                margin-top: 90px;
+                overflow: hidden;
+                border-top: 1px solid #ccc;
+                border-spacing:unset;
+                tr {
+                    td {
+                        width: 100%;
+                        border-bottom: 1px solid #ccc;
+                        padding: 10px 35px 10px 35px;
+                        &.category {
+                            width: 150px;
+                            font-size: 15px;
+                            color: #1a1a1a;
+                            font-weight:bold;
+                            text-align: center;
                         }
-                        &:last-child{
-                            display: flex;
-                            flex-direction: row-reverse;
-                            padding-right:35px;
-                            color:#999999;
-                            font-size:13px;
+                        &.notice_title {
+                            font-size: 14px;
+                            color: #1a1a1a;
+                            word-break: break-all;
+                            font-weight: 700;
+                            span {
+                                width: 800px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                display: block;
+                                a:hover {
+                                    color: #003366;
+                                }
+                            }
                         }
-                        .Link_title{
-                            text-decoration:none;
-                            &:visited{
-                                color:#1a1a1a;
-                            }
-                            &:link{
-                                color:#1a1a1a;
-                            }
+                        &.date {
+                            text-align: right;
+                            font-size: 13px;
+                            font-weight: 700;
+                            color: #999999;
+                        }
+                        &.no-data {
+                            text-align:center;
                         }
                     }
                 }
-                .-pagination{
-                    box-shadow:unset;
-                    border-top:none;
-                    margin-top:50px;
+            }
+            .paging {
+                width: 300px;
+                margin : 0 auto;
+                height:50px;
+                margin-top : 50px;
+                text-align : center;
+                ul {
+                    display:flex;
+                    flex-direction: row;
+                    place-content: center;
+                    align-items: center;
+                    justify-content: center;
+                    li {
+                        font-size : 16px;
+                        margin : 8px;
+                        cursor : pointer;
+                        color: #999;
+                        font-weight: bold;    
+                        &.selected {
+                            font-weight : bold;
+                            color: #036;
+                        }
+                    }
                 }
             }
         }

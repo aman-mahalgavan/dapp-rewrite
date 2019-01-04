@@ -1699,20 +1699,6 @@
     "DEPOSIT_LIMIT": "금액은 0보다 커야하며 9223372036보다 작아야합니다.",
     "NOPOST": "게시물이 없습니다."
   },
-  "NOTICE_TEXT": {
-    "TXT_TITLE1": "덱스하이(DEXHI) 데모 버전 오픈 안내",
-    "TXT_TEXT1": "안녕하세요 덱스하이(DEXHI) 입니다.\n덱스하이 데모 버전이 오픈 되었습니다.\n\n많은 관심 부탁드립니다.\n감사합니다.",
-    "TXT_TITLE2": "Information on Plug(PLG) KRW market listing and listing event",
-    "TXT_TITLE3": "DexNetwork(DNW) Event winner announcement",
-    "TXT_TITLE4": "Infomation on Server Maintenace (14.12.18 4am ~ 2pm)",
-    "TXT_TITLE5": "Infomation on the wallet opening and listing of Plug(PLG)",
-    "TXT_TITLE6": "Infomation regarding ERC20 token wallet opening schedule",
-    "TXT_TITLE7": "Pundi X(NPXS) December airdrop completed",
-    "TXT_TITLE8": "BitNaru is under maintenance. (09.12.2018 21:50 ~ 09.12.2018 23:00)",
-    "TXT_TITLE9": "Infomation on Taklimaken commission change, and wallet opening",
-    "TXT_TITLE10": "Infomation on changing price unit for SRCOIN",
-    "TXT_TITLE11": "Infomation regarding resuming DNW (BTCB) trading and event"
-  },
   "NOTICE_FAQ":[
     {
       "category": "회원가입",

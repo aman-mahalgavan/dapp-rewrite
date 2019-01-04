@@ -79,8 +79,6 @@ export default class HeaderComponent extends Component {
                                 return null;
                             }else if(r.name === "ListingRequest") {
                                 return null;
-                            }else if(r.name === "noticeDetail") {
-                                return null;
                             }
                             return <Link key={r.path} to={r.path}>{HEADER[r.langname]}</Link>
                         })}

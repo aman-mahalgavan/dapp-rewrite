@@ -174,11 +174,10 @@ class WalletContainer extends Component {
 
 
     renderEditable(cellInfo) {
-        const {BUTTONS} = this.props.languageConfig;
+        const {ACCOUNT_ACTIONS} = this.props.languageConfig;
             return<div>
-                <button type="button" className="table-btn1" onClick={(e)=>this.onOpenModalA(e, cellInfo)} value="deposit">{BUTTONS.TEXT_DEPOSIT}</button>
-                <button type="button" className="table-btn2" onClick={(e)=>this.onOpenModalA(e, cellInfo)} value="withdraw">{BUTTONS.TEXT_WITHDRAW}</button>
-                <button type="button" className="table-btn3" value="order">{BUTTONS.TEXT_MARKET}</button>
+                <button type="button" className="table-btn1" onClick={(e)=>this.onOpenModalA(e, cellInfo)} value="deposit">{ACCOUNT_ACTIONS.DEPOSIT}</button>
+                <button type="button" className="table-btn2" onClick={(e)=>this.onOpenModalA(e, cellInfo)} value="withdraw">{ACCOUNT_ACTIONS.WITHDRAW}</button>
             </div>
     }
     renderEditable_img(cellInfo){
@@ -425,12 +424,8 @@ class WalletContainer extends Component {
                                             <div className="first">{WALLET.TOTAL_ASSET}</div>
 
                                             <div className="second">
-                                                <div>
-                                                    <strong id="balanceTxt">0</strong>
-                                                    <span className="eth"> ETH</span>
-                                                </div>
-                                                    <strong id="balanceTxt2">0</strong>
-                                                    <span className="krw"> KRW</span>
+                                                <strong id="balanceTxt">0</strong>
+                                                <span className="krw"> KRW</span>
                                             </div>
                                         </h3>
 
@@ -977,7 +972,7 @@ const Wallet = styled.div`
             font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
             text-align: center;
             font-weight: bold;
-            line-height: 20px;
+            line-height: 34px;
             width:770px;
             .first {
                 width:40%;
@@ -985,30 +980,19 @@ const Wallet = styled.div`
                 flex:1;
                 font-size: 25px;
                 color:#1a1a1a
-                line-height: 50px;
             }
             .second {
                 flex:1;
                 width:60%;
                 float:left;
                 strong {
-                   &:first-child{
                     font-size: 30px;
                     color: #3c92ca;
                     font-weight: 900;
                     // margin-left: 50px;
-                    }
-                    font-size: 15px;
-                    color: #666;
-                }
-                .eth {
-                    font-size: 25px;
-                    margin-left:6px;
                 }
                 .krw {
-                    font-size: 15px;
-                    color: #666;
-                    margin-left:10px;
+                    font-size: 25px;
                 }
             }
         }
@@ -1067,23 +1051,6 @@ const Wallet = styled.div`
             margin-left:12px;
             &:focus{
                 background:#ff6666;
-                color:#fff;
-            }
-        }
-        .table-btn3{
-            background:#fff;
-            color:#364958;
-            width:80px;
-            height:32px;
-            font-size:14px;
-            font-weight:bold;
-            border:1px solid #d9d9d9;
-            outline:none;
-            cursor:pointer;
-            border-radius:7px;
-            margin-left:12px;
-            &:focus{
-                background:#364958;
                 color:#fff;
             }
         }
@@ -1373,25 +1340,8 @@ const Wallet = styled.div`
                                     text-align: right;
                                     // float:left;
                                 }
-                                #balanceTxt2 {
-                                    font-size: 0.5rem;
-                                    margin: 0;
-                                    // display: block;
-                                    // width: 50%;
-                                    text-align: right;
-                                    // float:left;
-                                }
                                 .krw {
                                     font-size: 1.2rem;
-                                    // display: block;
-                                    // width: 45%;
-                                    text-align: left;
-                                    padding-left:0;
-                                    // padding-left: 1rem;
-                                    // float:left;
-                                }
-                                .eth {
-                                    font-size: 0.5rem;
                                     // display: block;
                                     // width: 45%;
                                     text-align: left;
@@ -1526,16 +1476,12 @@ const Wallet = styled.div`
         .asset_balance{
             .table-btn1{
                 margin-left:0px;
-                width:33%;
+                width:50%;
             }
             .table-btn2{
                 margin-left:0px;
-                width:33%;
-            }
-            .table-btn3{
-                margin-left:0px;
-                width:33%;
-            }       
+                width:50%;
+            }    
         }
     }
 `
