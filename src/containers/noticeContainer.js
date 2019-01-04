@@ -8,8 +8,6 @@ import {isMobile} from "react-device-detect";
 import { Link } from 'react-router-dom';
 import Web3 from 'web3';
 import Actions from '../actions/index';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faCaretDown, faSearch} from '@fortawesome/free-solid-svg-icons';
 
 const hrefName=[
     "/notice",
@@ -173,7 +171,7 @@ export default class extends React.Component{
                                                 self.setState({searchText : target, page:1})
                                             },200);
                                         }
-                                        }/><a href="javascript:void(0)"><span className='Fa_icon'><FontAwesomeIcon icon={faSearch} /></span></a>
+                                        }/><a href="javascript:void(0)"><i className="xi-search"></i></a>
                                     </div>
                                 </div>
                                 <div className="notice_wrap">
@@ -290,9 +288,9 @@ const Notice = styled.div`
                     display: block;
                     float: right;
                     text-align: center;
-                    .Fa_icon{
-                        font-size:22px;
-                        line-height:40px;
+                    i {
+                        line-height: 42px;
+                        font-size: 22px;            
                     }
                 }
             }
