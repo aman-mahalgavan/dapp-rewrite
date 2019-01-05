@@ -29,14 +29,16 @@ export default class OrderbookA extends React.Component {
             askOrder: []
         };
         priceA.forEach((o, i) => {
-            _obj.bidOrder.push({
-                priceA: o,
-                volume: volumeA[i]
-            });
-            _obj.askOrder.push({
-                priceB: priceB[i],
-                volume: volumeB[i]
-            });
+            if(i<10){
+                _obj.bidOrder.push({
+                    priceA: o,
+                    volume: volumeA[i]
+                });
+                _obj.askOrder.push({
+                    priceB: priceB[i],
+                    volume: volumeB[i]
+                });
+            }
         })
 
         const setRowAmount = 15; //amount of show

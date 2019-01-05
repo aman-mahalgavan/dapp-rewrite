@@ -262,12 +262,12 @@ function* getBalance(params) {
         balance.available.forEach((obj, index) => {
               let holdAmount = divideBigNumbers(balance.reserved[index], tokens[index].decimal);
               let availableAmount = divideBigNumbers(obj.toString(), tokens[index].decimal);
-              let totalAmount = addBigNumbers(holdAmount, availableAmount);
+             // let totalAmount = addBigNumbers(holdAmount, availableAmount);
             _result.push({
                 name: tokens[index].name,
                 hold: holdAmount,
                 available: availableAmount,
-                total: totalAmount,
+              //  total: totalAmount,
                 tokenAddress: tokens[index].address
             });
         });

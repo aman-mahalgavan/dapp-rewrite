@@ -14,6 +14,10 @@ import modalupdown_3 from "../assets/images/modalupdown_3.png";
 import modalupdown_4 from "../assets/images/modalupdown_4.png";
 import modaltest1 from "../assets/images/modaltestimg.png";
 import modaltest2 from "../assets/images/modaltestimg2.png";
+import store from "../store/reduxStore";
+import { contractList } from "../utilities/config";
+import { transformToTokenName, addBigNumbers, subBigNumbers, divideBigNumbers } from "../utilities/helpers";
+
 import ETH from "../assets/images/icon/eth.png";
 import LNC from "../assets/images/icon/lnc.png";
 import BAT from "../assets/images/icon/bat.png";
@@ -122,15 +126,20 @@ class WalletContainer extends Component {
     componentDidMount() {
         this.props.getMyAccountId();
         this.props.getBalance();
-    }
-
-
-    callFunction(id) {
-        if(id && this.called === false){
-            // this.props.getMyOrders();
-            // this.props.getBalance(+id);
-            this.called = true;
-        }
+        const self = this;
+        const {GlobalSmartContractObject} = store.getState().smartContract;
+        this.newOrders = GlobalSmartContractObject.events.allEvents({
+            address: contractList[localStorage.getItem('contract') || 0].address,
+            toBlock: 'latest'
+        }, function (error, result) {
+            if (result !== undefined && contractList[localStorage.getItem('contract') || 0].address.toLowerCase() == result.address.toLowerCase()) {
+                if(result.event === "NewWithdraw"){
+                    self.withdrawEvent(result.returnValues)
+                } else if(result.event === "NewDeposit"){
+                    self.depositEvent(result.returnValues)
+                }
+            }
+        });
     }
 
     deposit = (e, cellInfo) => {
@@ -168,6 +177,51 @@ class WalletContainer extends Component {
         }
     }
 
+
+    callFunction(id) {
+        if(id && this.called === false){
+            // this.props.getMyOrders();
+            // this.props.getBalance(+id);
+            this.called = true;
+        }
+    }
+
+    depositEvent(value) {
+        const {balances} = this.state;
+        const myAccountId = this.props.accountId;
+        const {accountId, amount, prCode} = value;
+        if(myAccountId == accountId) {
+            const token = transformToTokenName(prCode);
+            const parseAmount = divideBigNumbers(amount, token.decimal);
+            const tokenIndex = balances.findIndex(element => element.name == token.productName);
+            balances[tokenIndex].total = addBigNumbers(balances[tokenIndex].total, parseAmount);
+            this.setState({
+                balances
+            })
+        }
+    }
+
+    withdrawEvent(value) {
+        const {balances} = this.state;
+        const myAccountId = this.props.accountId;
+        const {accountId, amount, prCode} = value;
+        if(myAccountId == accountId) {
+            const token = transformToTokenName(prCode);
+            const parseAmount = divideBigNumbers(amount, token.decimal);
+            const tokenIndex = balances.findIndex(element => element.name == token.productName);
+            balances[tokenIndex].total = subBigNumbers(balances[tokenIndex].total, parseAmount);
+            this.setState({
+                balances
+            })
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+
+        if (prevProps.balance !== this.props.balance) {
+            this.setState({balances: this.props.balance});
+        }
+    }
 
     renderEditable(cellInfo, flag) {
         const {ACCOUNT_ACTIONS} = this.props.languageConfig;
@@ -241,7 +295,7 @@ class WalletContainer extends Component {
         const { WALLET } = this.props.languageConfig;
         return(
             <ReactTable
-                data={this.props.balance}
+                data={this.state.balances}
                 columns={[
                     {
                         Header: WALLET.COIN_NAME,
@@ -251,7 +305,7 @@ class WalletContainer extends Component {
                     {
                         Header: WALLET.TOTAL,
                         id: "total_balance",
-                        accessor: d => d.total
+                        accessor: d => addBigNumbers(d.hold, d.available)
                     },
                     {
                         Header: WALLET.AVAILABLE,

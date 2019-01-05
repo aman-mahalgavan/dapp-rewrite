@@ -84,7 +84,7 @@ export default class OpenOrdersA extends React.Component {
                 Header: OPEN_ORDERS.TYPE_TEXT,
                 id: OPEN_ORDERS.TYPE_TEXT,
                 class: "headerW",
-                accessor: (d) => d.sells ? "Sell" : "Buy",
+                accessor: (d) => d.isSell ? "Sell" : "Buy",
                 width: "auto"
               }, {
                 Header: OPEN_ORDERS.PRICE_TEXT,

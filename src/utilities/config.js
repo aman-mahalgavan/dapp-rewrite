@@ -145,6 +145,6 @@ export const contractList = [
     {
         name: "Original",
         address: "0x13f59e0ed9224f646a94f28ca8120fc011b890b8",
-        abifile: contractJson3.default
+        abifile: contractJson2.default
     }
 ]

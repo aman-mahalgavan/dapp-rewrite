@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components';
+import { addBigNumbers } from "../../../utilities/helpers";
 import ETH from "../../../assets/images/icon/eth.png";
 import LNC from "../../../assets/images/icon/lnc.png";
 import BAT from "../../../assets/images/icon/bat.png";
@@ -37,8 +38,8 @@ export default class BalanceA extends React.Component {
             return {
                 baseAvailable : baseBalance.available,
                 tradeAvailable : tradeBalance.available,
-                baseTotal : baseBalance.total,
-                tradeTotal : tradeBalance.total
+                baseTotal : addBigNumbers(baseBalance.available, baseBalance.hold),
+                tradeTotal : addBigNumbers(tradeBalance.available, tradeBalance.hold)
             }
         }
     }

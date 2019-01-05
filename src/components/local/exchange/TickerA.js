@@ -12,6 +12,8 @@ import BNB from "../../../assets/images/icon/bnb.png";
 import ICON from "../../../assets/images/icon/icon.png";
 import TUSD from "../../../assets/images/icon/tusd.png";
 import VIEN from "../../../assets/images/icon/wab.png";
+import {divideBigNumbers} from "../../../utilities/helpers";
+import {config} from "../../../utilities/config";
 
 export default class TickerA extends React.Component{
 
@@ -91,7 +93,7 @@ export default class TickerA extends React.Component{
 
               <div className="currentCurrency">
                 <div className='currentCurrencyLh'>
-                  <div className="lastPrice">-
+                  <div className="lastPrice">{`${this.props.tradeHistory.length> 0 ? divideBigNumbers(this.props.tradeHistory[0].price, config.basePrice) : "-"} `}
                     <span>{this.props.baseName}</span>
                   </div>
                   <div className="currentDayPx">
