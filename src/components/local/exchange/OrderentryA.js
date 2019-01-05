@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components';
 import numeral from 'numeral';
+import {divideBigNumbers} from "../../../utilities/helpers";
 
 export default class OrderentryA extends React.Component {
 
@@ -20,8 +21,24 @@ export default class OrderentryA extends React.Component {
 
 
   percentActive(ref) {
+    const {balance} = this.props;
 
-    //When click the percent button, active this function
+    if(this.state.buy){
+      if(this.state.price == 0){
+            return;
+        }
+      const newAmount = divideBigNumbers(divideBigNumbers(balance[0].available, this.state.price),ref);
+      this.setState({
+          amount : newAmount,
+          total : +newAmount * +this.state.price
+      })
+    } else {
+        const newAmount =divideBigNumbers(balance[1].available, ref);
+        this.setState({
+            amount : newAmount,
+            total : +newAmount * +this.state.price
+        })
+    }
   }
 
 
@@ -107,19 +124,19 @@ export default class OrderentryA extends React.Component {
     );
     const percentButton = [
       {
-        ref: 10,
+        ref: "10",
         text: '10%',
       },
       {
-        ref: 25,
+        ref: "4",
         text: '25%',
       },
       {
-        ref: 50,
+        ref: "2",
         text: '50%',
       },
       {
-        ref: 100,
+        ref: "1",
         text: '100%',
       },
     ];

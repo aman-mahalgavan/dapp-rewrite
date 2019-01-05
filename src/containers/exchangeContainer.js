@@ -195,7 +195,6 @@ class ExchangeContainer extends Component {
 
     render() {
         const { ORDER_HISTORY, TRADES } = this.props.languageConfig;
-
         const isMobile = false;
         const list = [
             {
@@ -275,7 +274,7 @@ class ExchangeContainer extends Component {
                                                                 price={this.state.price}
                                                                 baseName={this.state.baseName}
                                                                 tradeName={this.state.tradeName}
-
+                                                                balance={this.state.selectedTokensBalances}
                                                             />
                                                         </div>
                                                     </div>
