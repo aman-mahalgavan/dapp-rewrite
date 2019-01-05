@@ -179,6 +179,26 @@ function* cancelOrder(params) {
     }
 }
 
+function* cancelOrders(params) {
+    try {
+        const { idArray } = params.payload;
+        const { GlobalWeb3Object, GlobalSmartContractObject } = store.getState().smartContract;
+        const FromAddress = yield GlobalWeb3Object.eth.getAccounts();
+
+        const result = yield GlobalSmartContractObject.methods.cancelOrders(idArray).send({
+            from: FromAddress[0]
+        });
+        let network = yield GlobalWeb3Object.eth.net.getNetworkType();
+        let etherscanLink = etherscanTx( network, 'Check Status: View Tx status', result.transactionHash);
+        result["etherscanLink"] = etherscanLink;
+        yield put({type: Constants.default.Success.CANCEL_ORDERS_SUCCESS, cancelOrdersStatus: result});
+    }
+    catch(e){
+        yield put({type: Constants.default.Failure.CANCEL_ORDERS_FAILURE, e});
+
+    }
+}
+
 
 function* placeBuyOrder(params) {
     try {
@@ -376,6 +396,7 @@ function* actionWatcher() {
     yield takeEvery(Constants.default.Requests.GET_DEPOSIT_WITHDRAWL_RECORDS_REQUEST, GetDepositWithdrawlRecords)
 
     yield takeEvery(Constants.default.Requests.CANCEL_ORDER_REQUEST, cancelOrder)
+    yield takeEvery(Constants.default.Requests.CANCEL_ORDERS_REQUEST, cancelOrders)
 }
 
 export default function* smartContractSaga() {

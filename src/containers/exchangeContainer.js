@@ -26,7 +26,9 @@ class ExchangeContainer extends Component {
             baseName: '',
             tradeName: '',
             price: 0,
-            marketsData: []
+            marketsData: [],
+            myOrders: [],
+            tradeHistory: []
         };
     }
 
@@ -193,6 +195,11 @@ class ExchangeContainer extends Component {
         this.props.cancelOrderRequest(val)
     }
 
+    cancelsOpenOrder = (arr) => {
+        console.log("array for cancel --> ", arr);
+        this.props.cancelOrdersRequest(arr);
+    }
+
     render() {
         const { ORDER_HISTORY, TRADES } = this.props.languageConfig;
 
@@ -247,7 +254,9 @@ class ExchangeContainer extends Component {
                                         languageConfig={this.props.languageConfig}
                                         data={this.state.orderBook}
                                         handleChangePrice={this.handleBuySellPrice}
-                                        
+                                        myOrders={this.state.myOrders}
+                                        cancelOrderRequest={ this.cancelOpenOrder}
+                                        cancelOrdersRequest={this.cancelsOpenOrder}
                                     />
                                 </div>
 
@@ -399,6 +408,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchTradeHistory: (x, y, z) => dispatch(Actions.global.fetchTradeHistory(x, y, z)),
         fetchOrderHistory: (x, y, z) => dispatch(Actions.global.fetchOrderHistory(x, y, z)),
         cancelOrderRequest: (x) => dispatch(Actions.smartContract.cancelOrderRequest(x)),
+        cancelOrdersRequest: (x) => dispatch(Actions.smartContract.cancelOrdersRequest(x)),
     }
 }
 
