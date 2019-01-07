@@ -12,8 +12,8 @@ import modalupdown_1 from "../assets/images/modalupdown_1.png";
 import modalupdown_2 from "../assets/images/modalupdown_2.png";
 import modalupdown_3 from "../assets/images/modalupdown_3.png";
 import modalupdown_4 from "../assets/images/modalupdown_4.png";
-import modaltest1 from "../assets/images/modaltestimg.png";
-import modaltest2 from "../assets/images/modaltestimg2.png";
+import modalimg1 from "../assets/images/modaltestimg.png";
+import modalimg2 from "../assets/images/modaltestimg2.png";
 import ETH from "../assets/images/icon/eth.png";
 import LNC from "../assets/images/icon/lnc.png";
 import BAT from "../assets/images/icon/bat.png";
@@ -149,10 +149,6 @@ class WalletContainer extends Component {
                 open: false
             })
         }
-        this.setState({
-            open: false
-        })
-
     }
 
     withdraw = (e, cellInfo) => {
@@ -239,13 +235,13 @@ class WalletContainer extends Component {
 
     renderTable() {
         const { WALLET } = this.props.languageConfig;
-        const test = this.props.balance;
-        let pageSize = test.length;
+        const balance_val = this.props.balance;
+        let pageSize = balance_val.length;
         console.log("ddd",pageSize)
         return(
             <ReactTable
                 showPagination={false}
-                data={test}
+                data={balance_val}
                 columns={[
                     {
                         Header: WALLET.COIN_NAME,
@@ -288,7 +284,7 @@ class WalletContainer extends Component {
                                 <ModalBoxB>
                                     <div className="modaltitle">Deposit <span>{this.state.selectTokenName}</span></div>
                                     <div className="modal_inbox_B">
-                                        <div><img src={modaltest1}/></div>
+                                        <div><img src={modalimg1}/></div>
                                         <ul>
                                             <li><div className='li_Box'>
                                                 <div className='Data_text2'>Amount</div>
@@ -332,7 +328,7 @@ class WalletContainer extends Component {
                                 <ModalBoxC>
                                     <div className="modaltitle">Withdraw <span>{this.state.selectTokenName}</span></div>
                                     <div className="modal_inbox_C">
-                                        <div><img src={modaltest2}/></div>
+                                        <div><img src={modalimg2}/></div>
                                         <ul>
                                             <li><div className='li_Box'>
                                                 <div className='Data_text2'>Amount</div>
